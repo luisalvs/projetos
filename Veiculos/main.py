@@ -16,14 +16,16 @@ def cadastrar_veiculos():
     marca = input('Marca: ')
     modelo = input('Modelo: ')
     ano = int(input('Ano: '))
-    placa = input('Placa: ')
+    placa = input('Placa: ').upper()
     cor = input('Cor: ')
 
     veiculos.append({'Marca': marca, 'Modelo': modelo, 'Ano': ano, 'Placa': placa, 'Cor': cor})
+    criar_json()
 
 def listar_veiculos():
     for veiculo in veiculos:
         print(veiculo)
+    carregar_json()
 
 def buscar_por_placa():
     placa = input('Placa: ')
@@ -51,15 +53,11 @@ while True:
 
     if opcoes == 1:
         cadastrar_veiculos()
-        criar_json()
     elif opcoes == 2:
         listar_veiculos()
-        carregar_json()
     elif opcoes == 3:
         buscar_por_placa()
-        carregar_json()
     elif opcoes == 4:
         remover_por_placa()
-        criar_json()
     else:
         break
