@@ -1,0 +1,16 @@
+[
+    {
+        "Marca": "Fiat",
+        "Modelo": "Punto",
+        "Cor": "Branco",
+        "Ano": 2016,
+        "Placa": "HEH1095"
+    },
+    {
+        "Marca": "Ford",
+        "Modelo": "Fiesta",
+        "Cor": "Preto",
+        "Ano": 2015,
+        "Placa": "IQU1025"
+    }
+]
