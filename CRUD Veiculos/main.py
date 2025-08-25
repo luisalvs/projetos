@@ -1,4 +1,5 @@
 import json
+import os
 
 carros = []
 filename = 'carros.json'
@@ -9,12 +10,15 @@ def criar_json():
 
 def carregar_json():
     global carros
-    with open(filename) as arquivo:
-        carros = json.load(arquivo)
-    
+    if os.path.exists(filename): # se o arquivo não existir
+        with open(filename) as arquivo:
+            carros = json.load(arquivo)
+    else:
+        carros = []
+
 def cadastrar_veiculo():
     carregar_json() # carrega dados existentes antes de adicionar
-    marca = input('Marca: ')
+    marca = input('\nMarca: ')
     modelo = input('Modelo: ')
     cor = input('Cor: ')
     ano = int(input('Ano: '))
@@ -22,6 +26,13 @@ def cadastrar_veiculo():
 
     carros.append({'Marca': marca, 'Modelo': modelo, 'Cor': cor, 'Ano': ano, 'Placa': placa })
     criar_json() # salva a lista atualizada de carros
+
+def listar_veiculos():
+    carregar_json()
+    for i, carro in enumerate(carros, 1):
+        print(f'\nVeículo {i}\n')
+        for chave, valor in carro.items():
+            print(f"{chave}: {valor}")
 
 def buscar_pela_placa():
     carregar_json()
@@ -31,3 +42,15 @@ def buscar_pela_placa():
             print(carro)
             return
     print('Carro não encontrado.')
+
+def remover_veiculo():
+    carregar_json()
+    placa = input('Digite a placa: ').upper()
+    for carro in carros:
+        if carro['Placa'] == placa:
+            carros.remove(carro)
+            criar_json()  # salva a lista atualizada
+            print('Carro removido com sucesso.')
+            return
+    print('Carro não encontrado')
+
