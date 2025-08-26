@@ -10,7 +10,7 @@ def criar_json():
 
 def carregar_json():
     global carros
-    if os.path.exists(filename): # se o arquivo não existir
+    if os.path.exists(filename): # se o arquivo existir
         with open(filename) as arquivo:
             carros = json.load(arquivo)
     else:
