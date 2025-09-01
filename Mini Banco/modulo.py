@@ -10,7 +10,7 @@ def criar_json():
         json.dump(banco, file, indent=4)
 
 def carregar_json():
-    global banco
+    global banco 
     if os.path.exists(filename):
         with open(filename) as file:
             banco = json.load(file)
@@ -38,7 +38,6 @@ def depositar():
             return
     print('Conta não encontrada')       
     
-
 # Saque → retirar valor, se houver saldo suficiente.
 def saque():
     carregar_json()
