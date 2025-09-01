@@ -2,7 +2,6 @@ import json
 import os
 
 # Cadastro de contas → cada conta com número, titular e saldo.
-
 banco = []
 filename = 'banco.json'
 
@@ -41,9 +40,38 @@ def depositar():
     
 
 # Saque → retirar valor, se houver saldo suficiente.
+def saque():
+    carregar_json()
+    numero_conta = int(input('Digite o número da conta: '))
+    for conta in banco:
+        if conta['Numero'] == numero_conta:
+            sacar = float(input('Digite o valor que deseja sacar: '))
+            conta['Saldo'] -= sacar
+            criar_json()
+            return
+    print('Conta não encontrada')
 
 # Transferência → passar valor de uma conta para outra.
+def transferencia():
+    carregar_json()
+
+    numero_conta1 = int(input('Digite o número da conta: '))
+    for conta in banco:
+        if conta['Numero'] == numero_conta1:
+            transferir = float(input('Digite o valor que deseja transferir: '))
+            conta['Saldo'] -= transferir
+           
+    numero_conta2 = int(input('Digite para qual conta deseja transferir: '))
+    for conta in banco:
+        if conta['Numero'] == numero_conta2:
+            conta['Saldo'] += transferir
+            criar_json()
+            return
+    print('Conta não encontrada')
 
 # Listar contas → ver todas as contas e saldos.
-
+def listar_contas():
+    carregar_json()
+    for contas in banco:
+        print(contas)
 
