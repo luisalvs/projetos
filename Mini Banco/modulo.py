@@ -53,13 +53,16 @@ def saque():
 # Transferência → passar valor de uma conta para outra.
 def transferencia():
     carregar_json()
-
     numero_conta1 = int(input('Digite o número da conta: '))
     for conta in banco:
         if conta['Numero'] == numero_conta1:
             transferir = float(input('Digite o valor que deseja transferir: '))
-            conta['Saldo'] -= transferir
-           
+            if conta['Saldo'] >= transferir:
+                conta['Saldo'] -= transferir
+            else:
+                print('Saldo indisponível')
+                return
+                
     numero_conta2 = int(input('Digite para qual conta deseja transferir: '))
     for conta in banco:
         if conta['Numero'] == numero_conta2:
@@ -73,4 +76,5 @@ def listar_contas():
     carregar_json()
     for contas in banco:
         print(contas)
+
 
